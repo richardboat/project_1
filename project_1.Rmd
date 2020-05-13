@@ -62,11 +62,12 @@ sum_steps<-aggregate(f_steps_data$steps,by=list(f_steps_data$date),FUN=sum)
 ```
 
 
-**This prints a histogram for the daily steps.**
+**This prints a histogram for the daily steps with NA's.**
 
 ```{r}
 data <-ggplot(sum_steps) + 
-  geom_bar(mapping = aes(x = Group.1, y =x ), stat = "identity", width=.5) 
+  geom_bar(mapping = aes(x = Group.1, y =x ), stat = "identity", width=.5)+
+  labs(title = "Total number of steps taken 'Each' day with NA's")
 data
 
 ```
@@ -135,6 +136,7 @@ sum_steps1<-aggregate(steps_data$steps,by=list(steps_data$date),FUN=sum)
 
 data <-ggplot(sum_steps1) + 
   geom_bar(mapping = aes(x = Group.1, y =x ), stat = "identity", width=0.4)+
+  labs(title = "Total number of steps taken 'Each' day without NA's") +
   theme(axis.text.x = element_text(angle = 90))
 data
 
@@ -185,7 +187,8 @@ head(mean_interval)
 ggplot(mean_interval, aes(x=interval, y=steps)) + 
   geom_line(color="black", size=1) + 
   facet_wrap(~day_week, nrow=2) +
-  labs(x="\nInterval", y="\nNumber of steps")
+  labs(x="\nInterval", y="\nNumber of steps")+
+  labs(title = "Panel plot comparing the average number of steps taken per 5-minute interval ")
 
 ```
 
